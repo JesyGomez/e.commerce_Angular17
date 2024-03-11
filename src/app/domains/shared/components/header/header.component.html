@@ -1,3 +1,123 @@
+<nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <a href="/" class="flex items-center">
+      <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27 18c-9 0-16.2 7.2-16.2 16.2 0 9 7.2 16.2 16.2 16.2 9 0 16.2-7.2 16.2-16.2 0-9-7.2-16.2-16.2-16.2zm0 27c-6.6 0-12-5.4-12-12 0-6.6 5.4-12 12-12 6.6 0 12 5.4 12 12 0 6.6-5.4 12-12 12z" />
+      </svg>
+      <span class="text-white font-bold">Store</span>
+    </a>
+        <!--<span class="font-semibold text-xl tracking-tight">Store</span>
+        OTra opcion intentando colocar una imagen:
+        <img src="/src/app/domains/img_store-shop-market.jpg" alt="Store Logo" class="h-8 w-8 mr-2" />  
+        <span class="text-white font-bold">Store</span>-->
+<!--  <div class="block lg:hidden">
+    <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-300 hover:text-white hover:border-white">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" img="http://www.w3.org/2000/svg"><title>Store</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+  </div>-->
+</div>
+<div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-lg flex space-x-6">
+      <a href="#responsive-header" routerLink="/" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }" class="block mt-5 lg:inline-block lg:mt-0 text-slate-100 hover:text-black mr-4">
+        Home
+      </a>
+      <a href="#responsive-header" routerLink="/about" routerLinkActive="underline" class="block mt-4 lg:inline-block lg:mt-0 text-slate-100 hover:text-black mr-4">
+        About
+      </a>
+      <a href="#responsive-header" routerLink="/services" routerLinkActive="underline"class="block mt-4 lg:inline-block lg:mt-0 text-slate-100 hover:text-black">
+        Service
+      </a>
+    </div>
+  </div>
+
+
+  <div class="flex items-center">
+    <button class="p-2 border rounded relative" (click)="toogleSideMenu()">
+      <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{ cart().length }}</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+        />
+      </svg>
+    </button>
+  </div>
+
+<div
+class="fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-auto transition-transform bg-white "
+[class.translate-x-full]="hideSideMenu()"
+>
+<div class="flex justify-between items-center">
+<p class="text-xl">My Cart</p>
+<button (click)="toogleSideMenu()">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-6 h-6"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M6 18L18 6M6 6l12 12"
+    />
+  </svg>
+</button>
+</div>
+<div class="pt-4 flex flex-col">
+@for (product of cart(); track product) {
+<div class="flex justify-between items-center space-y-2">
+  <div class="flex space-x-2 items-center">
+    <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
+    <h3>{{ product.title }}</h3>
+  </div>
+  <p>{{ product.price }}</p>
+</div>
+}
+<div>
+  <p>Total: {{ total() }}</p>
+</div>
+</div>
+</div>
+</nav>
+<!--
+ESTE DIV UTILIZA EL DESCARGAR
+  <div>
+      <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+    </div>
+
+  /////
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+  <ul class="text-lg flex space-x-6">  <li>
+      <a routerLink="/" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }" class="block hover:underline">
+        Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="/about" routerLinkActive="underline" class="block hover:underline">
+        About
+      </a>
+    </li>
+    <li>
+      <a routerLink="/services" routerLinkActive="underline" class="block hover:underline">
+        Services
+      </a>
+    </li>
+  </ul>
+  <div>
+    <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+  </div>
+</div>
 <nav class="contenedor-nav">
   <div class="envoltorio-nav flex items-center justify-between mx-auto py-4"
   >
@@ -100,4 +220,4 @@ class="fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-a
     <p>Total: {{ total() }}</p>
   </div>
 </div>
-</div>
+</div>-->
